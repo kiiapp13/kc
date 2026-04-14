@@ -1,9 +1,4 @@
-# Practical No. 1
-## Aim: Examining Telnet & SSH in Wireshark (Packet Analyzer)
 
----
-
-## PART A: TELNET ANALYSIS IN WIRESHARK (Windows)
 
 ### Step 1: Download Wireshark
 - Go to https://www.wireshark.org and download & install Wireshark for Windows.
@@ -31,10 +26,6 @@ telnet
 4. Press **Enter** — you will see all Telnet packets.
 5. Each packet shows: Source IP, Destination IP, Protocol (TELNET), Length, and Info (e.g., "1 byte data", "2 bytes data").
 6. You can right-click any packet → **Follow** → **TCP Stream** to see the entire conversation in plain text (since Telnet is unencrypted).
-
-**Key Observation:** Telnet sends data in **plaintext** — usernames, passwords, and commands are all visible in Wireshark. This is why Telnet is considered insecure.
-
----
 
 ## PART B: SSH/FTP ANALYSIS IN WIRESHARK (Kali Linux)
 
@@ -65,13 +56,4 @@ tcp.port==22
 3. A new window appears showing the full conversation between client and server.
 4. You can see the FTP login sequence: USER demo, PASS password, server responses, SYST, FEAT commands, etc.
 
-**Key Observation:** FTP (like Telnet) sends data in plaintext. SSH, on the other hand, encrypts all data — the TCP stream for SSH shows only encrypted/binary content, making it unreadable.
 
----
-
-## Summary of Key Points
-- **Telnet** → Plaintext protocol, all data visible in Wireshark.
-- **FTP** → Plaintext protocol, credentials visible in Wireshark.
-- **SSH** → Encrypted protocol, data is not readable in Wireshark.
-- Wireshark filter `telnet` shows Telnet packets; `tcp.port==22` shows SSH packets.
-- Use **Follow TCP Stream** to read the full conversation of any TCP session.
