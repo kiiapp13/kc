@@ -1,12 +1,3 @@
-# Practical No. 6
-## Aim: Execute Keylogger Script and Observe the Risk Associated with Keylogger
-
----
-
-## What is a Keylogger?
-A keylogger is a program that secretly records all keystrokes typed by a user and/or mouse movements. It is a type of surveillance/spyware. Understanding keyloggers helps in defending against them.
-
----
 
 ## Step 1: Create a Keylogger Folder
 
@@ -166,38 +157,4 @@ Open `keylogger_log.txt` to see all captured keystrokes.
 
 ---
 
-## Risks Associated with Keyloggers
 
-| Risk | Description |
-|---|---|
-| **Password theft** | Login credentials for banking, email, social media are captured |
-| **Privacy breach** | All personal messages, searches, and documents are recorded |
-| **Identity theft** | Personal information typed (SSN, credit card, OTP) is stolen |
-| **Silent operation** | The console window is hidden — user has no idea it's running |
-| **Persistent threat** | Can be set to auto-start with Windows using registry keys |
-| **Data exfiltration** | Advanced keyloggers email log files to attacker automatically |
-
----
-
-## Detection and Prevention
-
-- Use **antivirus/anti-malware** software that detects keyloggers.
-- Use **virtual keyboards** for entering sensitive passwords.
-- Keep OS and software **updated** to patch vulnerabilities.
-- Use **two-factor authentication** (even if password is stolen, attacker can't login).
-- Monitor running processes using Task Manager or tools like Process Explorer.
-- Use **Ctrl+Alt+Del** screen to enter Windows login password (protected from many keyloggers).
-
----
-
-## Summary of Code
-
-| Code | Purpose |
-|---|---|
-| `from pynput import mouse` | Import mouse monitoring library |
-| `from pynput import keyboard` | Import keyboard monitoring library |
-| `mouse.Listener(on_click, on_move, on_scroll)` | Listen for all mouse events |
-| `keyboard.Listener(on_press)` | Listen for all key presses |
-| `win32gui.ShowWindow(win, 0)` | Hide the console window |
-| `open(log_file, "a")` | Open file in append mode to keep adding logs |
-| `pythoncom.PumpMessages()` | Keep the program running in background |
