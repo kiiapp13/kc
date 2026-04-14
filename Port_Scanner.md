@@ -1,26 +1,3 @@
-# Practical No. 10
-## Aim: Examining the System Using Port Scanner
-
----
-
-## What is Port Scanning?
-Port scanning is the process of checking which ports on a target system are open (listening for connections). Open ports indicate running services. Attackers use port scanning for reconnaissance; defenders use it to identify exposed services.
-
-Common ports:
-- 21 → FTP
-- 22 → SSH
-- 23 → Telnet
-- 25 → SMTP (email)
-- 53 → DNS
-- 80 → HTTP (web)
-- 110 → POP3 (email)
-- 139 → NetBIOS
-- 143 → IMAP (email)
-- 443 → HTTPS (secure web)
-- 445 → SMB (Windows file sharing)
-- 3389 → RDP (Remote Desktop)
-
----
 
 ## Step 1: Write the Port Scanner Code in Python
 
@@ -225,49 +202,4 @@ if __name__ == "__main__":
     scan_ports(target_ip, common_ports)
 ```
 
----
 
-## Code Explanation
-
-| Code | Purpose |
-|---|---|
-| `socket.socket(socket.AF_INET, socket.SOCK_STREAM)` | Create a TCP socket (IPv4) |
-| `sock.settimeout(1)` | Set 1-second timeout — don't wait too long on closed ports |
-| `sock.connect_ex((target, port))` | Try to connect; returns 0 if successful (port open) |
-| `result == 0` | 0 means connection was successful (port is OPEN) |
-| `sock.close()` | Close the socket after each attempt |
-| `common_ports` | List of well-known ports to check |
-
----
-
-## Key Points for Exam
-
-- **Port scanning** identifies which services are running on a target machine.
-- Python's `socket` module is used to create TCP connections.
-- `connect_ex()` returns 0 for open ports, non-zero for closed/filtered ports.
-- `settimeout(1)` prevents the scanner from hanging on filtered ports.
-- Port 22 (SSH), 80 (HTTP), 443 (HTTPS) are commonly found open.
-- **Nmap** is the professional-grade port scanner available in Kali (`nmap -sV 192.168.21.56`).
-- Port scanning without permission is illegal — only scan systems you own or have written permission to test.
-- This script uses **TCP Connect Scan** — the most basic type of scan.
-
----
-
-## Commands Summary
-
-```bash
-# On Kali Linux:
-ifconfig                         # Find Kali's IP address
-systemctl start ssh              # Open port 22
-systemctl status ssh             # Check if SSH is running
-systemctl stop ssh               # Close port 22
-
-# On Windows/Python:
-python port_scanner.py           # Run the scanner
-# Enter Kali's IP when prompted
-
-# Using Nmap (professional tool, in Kali):
-nmap 192.168.21.56               # Basic scan
-nmap -sV 192.168.21.56           # Service version detection
-nmap -p 1-1000 192.168.21.56     # Scan ports 1-1000
-```
